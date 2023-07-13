@@ -1,0 +1,351 @@
+<!DOCTYPE html><html lang="zh_CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>yolo | Zc's Blog</title><meta name="author" content="张超"><meta name="copyright" content="张超"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="安全帽检测该项目是使用 YOLOv5 v2.x 的程序来训练在智能工地安全领域中头盔目标检测的应用, 先来一波演示！ 指标yolov5s 为基础训练，epoch &#x3D; 50   分类 P R mAP0.5    总体 0.884 0.899 0.888   人体 0.846 0.893 0.877   头 0.889 0.883 0.871   安全帽 0.917 0.921 0.917   对应的">
+<meta property="og:type" content="article">
+<meta property="og:title" content="yolo">
+<meta property="og:url" content="https://zc0812.github.io/2023/07/13/yolo/index.html">
+<meta property="og:site_name" content="Zc&#39;s Blog">
+<meta property="og:description" content="安全帽检测该项目是使用 YOLOv5 v2.x 的程序来训练在智能工地安全领域中头盔目标检测的应用, 先来一波演示！ 指标yolov5s 为基础训练，epoch &#x3D; 50   分类 P R mAP0.5    总体 0.884 0.899 0.888   人体 0.846 0.893 0.877   头 0.889 0.883 0.871   安全帽 0.917 0.921 0.917   对应的">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://zc0812.github.io/img/avatar.png">
+<meta property="article:published_time" content="2023-07-13T02:47:24.000Z">
+<meta property="article:modified_time" content="2023-07-13T02:53:29.736Z">
+<meta property="article:author" content="张超">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://zc0812.github.io/img/avatar.png"><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="https://zc0812.github.io/2023/07/13/yolo/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox/fancybox.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = {
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"/search.xml","preload":false,"top_n_per_article":1,"unescape":false,"languages":{"hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found"}},
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false},
+  copy: {
+    success: 'Copy successfully',
+    error: 'Copy error',
+    noSupport: 'The browser does not support'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: 'days',
+  dateSuffix: {
+    just: 'Just',
+    min: 'minutes ago',
+    hour: 'hours ago',
+    day: 'days ago',
+    month: 'months ago'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  source: {
+    justifiedGallery: {
+      js: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: false,
+  },
+  autoDarkmode: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'yolo',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2023-07-13 10:53:29'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+    win.getCSS = (url,id = false) => new Promise((resolve, reject) => {
+      const link = document.createElement('link')
+      link.rel = 'stylesheet'
+      link.href = url
+      if (id) link.id = id
+      link.onerror = reject
+      link.onload = link.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        link.onload = link.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(link)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          if (t === 'dark') activateDarkMode()
+          else if (t === 'light') activateLightMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+    const detectApple = () => {
+      if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+    })(window)</script><meta name="generator" content="Hexo 6.3.0"></head><body><div id="loading-box"><div class="loading-left-bg"></div><div class="loading-right-bg"></div><div class="spinner-box"><div class="configure-border-1"><div class="configure-core"></div></div><div class="configure-border-2"><div class="configure-core"></div></div><div class="loading-word">Loading...</div></div></div><script>(()=>{
+  const $loadingBox = document.getElementById('loading-box')
+  const $body = document.body
+  const preloader = {
+    endLoading: () => {
+      $body.style.overflow = ''
+      $loadingBox.classList.add('loaded')
+    },
+    initLoading: () => {
+      $body.style.overflow = 'hidden'
+      $loadingBox.classList.remove('loaded')
+    }
+  }
+
+  preloader.initLoading()
+  window.addEventListener('load',() => { preloader.endLoading() })
+
+  if (false) {
+    document.addEventListener('pjax:send', () => { preloader.initLoading() })
+    document.addEventListener('pjax:complete', () => { preloader.endLoading() })
+  }
+})()</script><div id="web_bg"></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="/img/avatar.png" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">Articles</div><div class="length-num">2</div></a><a href="/tags/"><div class="headline">Tags</div><div class="length-num">0</div></a><a href="/categories/"><div class="headline">Categories</div><div class="length-num">1</div></a></div><hr class="custom-hr"/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 主页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 档案</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于我</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('/img/banner.png')"><nav id="nav"><span id="blog-info"><a href="/" title="Zc's Blog"><span class="site-name">Zc's Blog</span></a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search" href="javascript:void(0);"><i class="fas fa-search fa-fw"></i><span> Search</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 主页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 档案</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于我</span></a></div></div><div id="toggle-menu"><a class="site-page" href="javascript:void(0);"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">yolo</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">Created</span><time class="post-meta-date-created" datetime="2023-07-13T02:47:24.000Z" title="Created 2023-07-13 10:47:24">2023-07-13</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">Updated</span><time class="post-meta-date-updated" datetime="2023-07-13T02:53:29.736Z" title="Updated 2023-07-13 10:53:29">2023-07-13</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/">深度学习</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="yolo"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">Post View:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><h1 id="安全帽检测"><a href="#安全帽检测" class="headerlink" title="安全帽检测"></a>安全帽检测</h1><p>该项目是使用 <code>YOLOv5 v2.x</code> 的程序来训练在智能工地安全领域中头盔目标检测的应用, 先来一波演示！<br><img src="/./yolo/output_1.jpg"><br><img src="/./yolo/output_2.jpg"><br><img src="/./yolo/output_3.jpg"><br><img src="/./yolo/output_4.jpg"></p>
+<h2 id="指标"><a href="#指标" class="headerlink" title="指标"></a>指标</h2><h3 id="yolov5s-为基础训练，epoch-50"><a href="#yolov5s-为基础训练，epoch-50" class="headerlink" title="yolov5s 为基础训练，epoch = 50"></a>yolov5s 为基础训练，<code>epoch = 50</code></h3><table>
+<thead>
+<tr>
+<th>分类</th>
+<th>P</th>
+<th>R</th>
+<th>mAP0.5</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>总体</td>
+<td>0.884</td>
+<td>0.899</td>
+<td>0.888</td>
+</tr>
+<tr>
+<td>人体</td>
+<td>0.846</td>
+<td>0.893</td>
+<td>0.877</td>
+</tr>
+<tr>
+<td>头</td>
+<td>0.889</td>
+<td>0.883</td>
+<td>0.871</td>
+</tr>
+<tr>
+<td>安全帽</td>
+<td>0.917</td>
+<td>0.921</td>
+<td>0.917</td>
+</tr>
+</tbody></table>
+<p>对应的<strong>权重文件</strong>：<a target="_blank" rel="noopener" href="https://pan.baidu.com/s/1ELPhtW-Q4G8UqEr4YrV_5A">百度云</a>，提取码: <code>b981</code></p>
+<hr>
+<h3 id="yolov5m-为基础训练，epoch-100"><a href="#yolov5m-为基础训练，epoch-100" class="headerlink" title="yolov5m 为基础训练，epoch = 100"></a>yolov5m 为基础训练，<code>epoch = 100</code></h3><table>
+<thead>
+<tr>
+<th>分类</th>
+<th>P</th>
+<th>R</th>
+<th>mAP0.5</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>总体</td>
+<td>0.886</td>
+<td>0.915</td>
+<td>0.901</td>
+</tr>
+<tr>
+<td>人体</td>
+<td>0.844</td>
+<td>0.906</td>
+<td>0.887</td>
+</tr>
+<tr>
+<td>头</td>
+<td>0.9</td>
+<td>0.911</td>
+<td>0.9</td>
+</tr>
+<tr>
+<td>安全帽</td>
+<td>0.913</td>
+<td>0.929</td>
+<td>0.916</td>
+</tr>
+</tbody></table>
+<p>对应的<strong>权重文件</strong>：<a target="_blank" rel="noopener" href="https://pan.baidu.com/s/10hlKrgpxVsw4d_vHnPHwEA">百度云</a>，提取码: <code>psst</code></p>
+<hr>
+<h3 id="yolov5l-为基础训练，epoch-100"><a href="#yolov5l-为基础训练，epoch-100" class="headerlink" title="yolov5l 为基础训练，epoch = 100"></a>yolov5l 为基础训练，<code>epoch = 100</code></h3><table>
+<thead>
+<tr>
+<th>分类</th>
+<th>P</th>
+<th>R</th>
+<th>mAP0.5</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>总体</td>
+<td>0.892</td>
+<td>0.919</td>
+<td>0.906</td>
+</tr>
+<tr>
+<td>人体</td>
+<td>0.856</td>
+<td>0.914</td>
+<td>0.897</td>
+</tr>
+<tr>
+<td>头</td>
+<td>0.893</td>
+<td>0.913</td>
+<td>0.901</td>
+</tr>
+<tr>
+<td>安全帽</td>
+<td>0.927</td>
+<td>0.929</td>
+<td>0.919</td>
+</tr>
+</tbody></table>
+<p>对应的<strong>权重文件</strong>：<a target="_blank" rel="noopener" href="https://pan.baidu.com/s/1iMZkRNXY1fowpQCcapFDqw">百度云</a>，提取码: <code>a66e</code></p>
+<hr>
+<h1 id="1-YOLO-v5训练自己数据集教程"><a href="#1-YOLO-v5训练自己数据集教程" class="headerlink" title="1.YOLO v5训练自己数据集教程"></a>1.YOLO v5训练自己数据集教程</h1><p>使用的数据集：<a target="_blank" rel="noopener" href="https://github.com/njvisionpower/Safety-Helmet-Wearing-Dataset">Safety-Helmet-Wearing-Dataset</a> ，感谢这位大神的开源数据集！</p>
+<blockquote>
+<p>本文结合 <a target="_blank" rel="noopener" href="https://github.com/ultralytics/yolov5/wiki/Train-Custom-Data">YOLOv5官方教程</a> 来写</p>
+</blockquote>
+<h2 id="环境准备"><a href="#环境准备" class="headerlink" title="环境准备"></a>环境准备</h2><p>首先确保自己的环境：</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Python &gt;= 3.7</span><br><span class="line">Pytorch == 1.5.x</span><br></pre></td></tr></table></figure>
+
+<h2 id="官方权重"><a href="#官方权重" class="headerlink" title="官方权重"></a>官方权重</h2><p>我已上传到一份到百度云：<a target="_blank" rel="noopener" href="https://pan.baidu.com/s/1mSIjDAzfiJd1fqSxIYzRDA">下载链接</a> , 密码: <code>44qm</code></p>
+<h2 id="训练自己的数据"><a href="#训练自己的数据" class="headerlink" title="训练自己的数据"></a>训练自己的数据</h2><h4 id="提示："><a href="#提示：" class="headerlink" title="提示："></a>提示：</h4><p><strong>关于增加数据集分类的方法，请看【5. 增加数据集的分类】</strong></p>
+<hr>
+<h3 id="1-1-创建自己的数据集配置文件"><a href="#1-1-创建自己的数据集配置文件" class="headerlink" title="1.1 创建自己的数据集配置文件"></a>1.1 创建自己的数据集配置文件</h3><p>因为我这里只是判断 【人没有带安全帽】、【人有带安全帽】、【人体】 3个类别 ，基于 <code>data/coco128.yaml</code> 文件，创建自己的数据集配置文件 <code>custom_data.yaml</code></p>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="comment"># 训练集和验证集的 labels 和 image 文件的位置</span></span><br><span class="line"><span class="attr">train:</span> <span class="string">./score/images/train</span></span><br><span class="line"><span class="attr">val:</span> <span class="string">./score/images/val</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># number of classes</span></span><br><span class="line"><span class="attr">nc:</span> <span class="number">3</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># class names</span></span><br><span class="line"><span class="attr">names:</span> [<span class="string">&#x27;person&#x27;</span>, <span class="string">&#x27;head&#x27;</span>, <span class="string">&#x27;helmet&#x27;</span>]</span><br></pre></td></tr></table></figure>
+
+<h3 id="1-2-创建每个图片对应的标签文件"><a href="#1-2-创建每个图片对应的标签文件" class="headerlink" title="1.2 创建每个图片对应的标签文件"></a>1.2 创建每个图片对应的标签文件</h3><p>你可以使用 <code>data/gen_data/gen_head_helmet.py</code> 来将<code> VOC</code> 的数据集转换成 <code>YOLOv5</code> 训练需要用到的格式。</p>
+<p>使用标注工具类似于 <a target="_blank" rel="noopener" href="https://labelbox.com/">Labelbox</a> 、<a target="_blank" rel="noopener" href="https://github.com/opencv/cvat">CVAT</a> 、<a target="_blank" rel="noopener" href="http://www.jinglingbiaozhu.com/">精灵标注助手</a> 标注之后，需要生成每个图片对应的 <code>.txt</code> 文件，其规范如下：</p>
+<ul>
+<li>每一行都是一个目标</li>
+<li>类别序号是零索引开始的（从0开始）</li>
+<li>每一行的坐标 <code>class x_center y_center width height</code> 格式</li>
+<li>框坐标必须采用<strong>归一化的 xywh</strong>格式（从0到1）。如果您的框以像素为单位，则将<code>x_center</code>和<code>width</code>除以图像宽度，将<code>y_center</code>和<code>height</code>除以图像高度。代码如下：</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line"><span class="keyword">def</span> <span class="title function_">convert</span>(<span class="params">size, box</span>):</span><br><span class="line">    <span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="string">    将标注的 xml 文件生成的【左上角x,左上角y,右下角x，右下角y】标注转换为yolov5训练的坐标</span></span><br><span class="line"><span class="string">    :param size: 图片的尺寸： [w,h]</span></span><br><span class="line"><span class="string">    :param box: anchor box 的坐标 [左上角x,左上角y,右下角x,右下角y,]</span></span><br><span class="line"><span class="string">    :return: 转换后的 [x,y,w,h]</span></span><br><span class="line"><span class="string">    &quot;&quot;&quot;</span></span><br><span class="line"></span><br><span class="line">    x1 = <span class="built_in">int</span>(box[<span class="number">0</span>])</span><br><span class="line">    y1 = <span class="built_in">int</span>(box[<span class="number">1</span>])</span><br><span class="line">    x2 = <span class="built_in">int</span>(box[<span class="number">2</span>])</span><br><span class="line">    y2 = <span class="built_in">int</span>(box[<span class="number">3</span>])</span><br><span class="line"></span><br><span class="line">    dw = np.float32(<span class="number">1.</span> / <span class="built_in">int</span>(size[<span class="number">0</span>]))</span><br><span class="line">    dh = np.float32(<span class="number">1.</span> / <span class="built_in">int</span>(size[<span class="number">1</span>]))</span><br><span class="line"></span><br><span class="line">    w = x2 - x1</span><br><span class="line">    h = y2 - y1</span><br><span class="line">    x = x1 + (w / <span class="number">2</span>)</span><br><span class="line">    y = y1 + (h / <span class="number">2</span>)</span><br><span class="line"></span><br><span class="line">    x = x * dw</span><br><span class="line">    w = w * dw</span><br><span class="line">    y = y * dh</span><br><span class="line">    h = h * dh</span><br><span class="line">    <span class="keyword">return</span> [x, y, w, h]</span><br></pre></td></tr></table></figure>
+
+<p>生成的 <code>.txt</code> 文件放置的名字是图片的名字，放置在 label 文件夹中，例如：</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">./score/images/train/00001.jpg  # image</span><br><span class="line">./score/labels/train/00001.txt  # label</span><br></pre></td></tr></table></figure>
+
+<p>生成的 <code>.txt</code> 例子：</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">1 0.1830000086920336 0.1396396430209279 0.13400000636465847 0.15915916301310062</span><br><span class="line">1 0.5240000248886645 0.29129129834473133 0.0800000037997961 0.16816817224025726</span><br><span class="line">1 0.6060000287834555 0.29579580295830965 0.08400000398978591 0.1771771814674139</span><br><span class="line">1 0.6760000321082771 0.25375375989824533 0.10000000474974513 0.21321321837604046</span><br><span class="line">0 0.39300001866649836 0.2552552614361048 0.17800000845454633 0.2822822891175747</span><br><span class="line">0 0.7200000341981649 0.5570570705458522 0.25200001196935773 0.4294294398277998</span><br><span class="line">0 0.7720000366680324 0.2567567629739642 0.1520000072196126 0.23123123683035374</span><br></pre></td></tr></table></figure>
+
+<h3 id="1-3-文件放置规范"><a href="#1-3-文件放置规范" class="headerlink" title="1.3 文件放置规范"></a>1.3 文件放置规范</h3><p>文件树如下</p>
+<p><img src="/./yolo/File_tree.png"></p>
+<h3 id="1-4-聚类得出先验框（Yolov5-内部已做适配，可选）"><a href="#1-4-聚类得出先验框（Yolov5-内部已做适配，可选）" class="headerlink" title="1.4 聚类得出先验框（Yolov5 内部已做适配，可选）"></a>1.4 聚类得出先验框（Yolov5 内部已做适配，可选）</h3><p>使用代码 <code>./data/gen_anchors/calculate_anchors.py</code> ，修改数据集的路径</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">FILE_ROOT = <span class="string">r&quot;xxx&quot;</span> <span class="comment"># 根路径</span></span><br><span class="line">ANNOTATION_ROOT = <span class="string">r&quot;xxx&quot;</span>  <span class="comment"># 数据集标签文件夹路径</span></span><br><span class="line">ANNOTATION_PATH = FILE_ROOT + ANNOTATION_ROOT</span><br></pre></td></tr></table></figure>
+<p>跑完会生成一个文件 <code>anchors.txt</code>，里面有得出的建议先验框：</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Best Accuracy = 79.72%</span><br><span class="line"></span><br><span class="line">Best Anchors = [[14.74, 27.64], [23.48, 46.04], [28.88, 130.0], [39.33, 148.07], [52.62, 186.18], [62.33, 279.11], [85.19, 237.87], [88.0, 360.89], [145.33, 514.67]]</span><br></pre></td></tr></table></figure>
+
+<h3 id="1-5-选择一个您需要的模型"><a href="#1-5-选择一个您需要的模型" class="headerlink" title="1.5 选择一个您需要的模型"></a>1.5 选择一个您需要的模型</h3><p>在文件夹 <code>./models</code> 下选择一个你需要的模型然后复制一份出来，将文件开头的 <code>nc = </code> 修改为数据集的分类数，下面是借鉴 <code>./models/yolov5s.yaml</code>来修改的</p>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># parameters</span></span><br><span class="line"><span class="attr">nc:</span> <span class="number">3</span>  <span class="comment"># number of classes     &lt;============ 修改这里为数据集的分类数</span></span><br><span class="line"><span class="attr">depth_multiple:</span> <span class="number">0.33</span>  <span class="comment"># model depth multiple</span></span><br><span class="line"><span class="attr">width_multiple:</span> <span class="number">0.50</span>  <span class="comment"># layer channel multiple</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># anchors</span></span><br><span class="line"><span class="attr">anchors:</span> <span class="comment"># &lt;============ 根据 ./data/gen_anchors/anchors.txt 中的 Best Anchors 修改，需要取整（可选）</span></span><br><span class="line">  <span class="bullet">-</span> [<span class="number">14</span>,<span class="number">27</span>, <span class="number">23</span>,<span class="number">46</span>, <span class="number">28</span>,<span class="number">130</span>] </span><br><span class="line">  <span class="bullet">-</span> [<span class="number">39</span>,<span class="number">148</span>, <span class="number">52</span>,<span class="number">186</span>, <span class="number">62</span><span class="string">.</span>,<span class="number">279</span>] </span><br><span class="line">  <span class="bullet">-</span> [<span class="number">85</span>,<span class="number">237</span>, <span class="number">88</span>,<span class="number">360</span>, <span class="number">145</span>,<span class="number">514</span>]</span><br><span class="line"></span><br><span class="line"><span class="comment"># YOLOv5 backbone</span></span><br><span class="line"><span class="attr">backbone:</span></span><br><span class="line">  <span class="comment"># [from, number, module, args]</span></span><br><span class="line">  [[<span class="number">-1</span>, <span class="number">1</span>, <span class="string">Focus</span>, [<span class="number">64</span>, <span class="number">3</span>]],  <span class="comment"># 0-P1/2</span></span><br><span class="line">   [<span class="number">-1</span>, <span class="number">1</span>, <span class="string">Conv</span>, [<span class="number">128</span>, <span class="number">3</span>, <span class="number">2</span>]],  <span class="comment"># 1-P2/4</span></span><br><span class="line">   [<span class="number">-1</span>, <span class="number">3</span>, <span class="string">BottleneckCSP</span>, [<span class="number">128</span>]],</span><br><span class="line">   [<span class="number">-1</span>, <span class="number">1</span>, <span class="string">Conv</span>, [<span class="number">256</span>, <span class="number">3</span>, <span class="number">2</span>]],  <span class="comment"># 3-P3/8</span></span><br><span class="line">   [<span class="number">-1</span>, <span class="number">9</span>, <span class="string">BottleneckCSP</span>, [<span class="number">256</span>]],</span><br><span class="line">   [<span class="number">-1</span>, <span class="number">1</span>, <span class="string">Conv</span>, [<span class="number">512</span>, <span class="number">3</span>, <span class="number">2</span>]],  <span class="comment"># 5-P4/16</span></span><br><span class="line">   [<span class="number">-1</span>, <span class="number">9</span>, <span class="string">BottleneckCSP</span>, [<span class="number">512</span>]],</span><br><span class="line">   [<span class="number">-1</span>, <span class="number">1</span>, <span class="string">Conv</span>, [<span class="number">1024</span>, <span class="number">3</span>, <span class="number">2</span>]],  <span class="comment"># 7-P5/32</span></span><br><span class="line">   [<span class="number">-1</span>, <span class="number">1</span>, <span class="string">SPP</span>, [<span class="number">1024</span>, [<span class="number">5</span>, <span class="number">9</span>, <span class="number">13</span>]]],</span><br><span class="line">   [<span class="number">-1</span>, <span class="number">3</span>, <span class="string">BottleneckCSP</span>, [<span class="number">1024</span>, <span class="literal">False</span>]],  <span class="comment"># 9</span></span><br><span class="line">  ]</span><br><span class="line"></span><br><span class="line"><span class="comment"># YOLOv5 head</span></span><br><span class="line"><span class="attr">head:</span></span><br><span class="line">  [[<span class="number">-1</span>, <span class="number">1</span>, <span class="string">Conv</span>, [<span class="number">512</span>, <span class="number">1</span>, <span class="number">1</span>]],</span><br><span class="line">   [<span class="number">-1</span>, <span class="number">1</span>, <span class="string">nn.Upsample</span>, [<span class="string">None</span>, <span class="number">2</span>, <span class="string">&#x27;nearest&#x27;</span>]],</span><br><span class="line">   [[<span class="number">-1</span>, <span class="number">6</span>], <span class="number">1</span>, <span class="string">Concat</span>, [<span class="number">1</span>]],  <span class="comment"># cat backbone P4</span></span><br><span class="line">   [<span class="number">-1</span>, <span class="number">3</span>, <span class="string">BottleneckCSP</span>, [<span class="number">512</span>, <span class="literal">False</span>]],  <span class="comment"># 13</span></span><br><span class="line"></span><br><span class="line">   [<span class="number">-1</span>, <span class="number">1</span>, <span class="string">Conv</span>, [<span class="number">256</span>, <span class="number">1</span>, <span class="number">1</span>]],</span><br><span class="line">   [<span class="number">-1</span>, <span class="number">1</span>, <span class="string">nn.Upsample</span>, [<span class="string">None</span>, <span class="number">2</span>, <span class="string">&#x27;nearest&#x27;</span>]],</span><br><span class="line">   [[<span class="number">-1</span>, <span class="number">4</span>], <span class="number">1</span>, <span class="string">Concat</span>, [<span class="number">1</span>]],  <span class="comment"># cat backbone P3</span></span><br><span class="line">   [<span class="number">-1</span>, <span class="number">3</span>, <span class="string">BottleneckCSP</span>, [<span class="number">256</span>, <span class="literal">False</span>]],  <span class="comment"># 17</span></span><br><span class="line"></span><br><span class="line">   [<span class="number">-1</span>, <span class="number">1</span>, <span class="string">Conv</span>, [<span class="number">256</span>, <span class="number">3</span>, <span class="number">2</span>]],</span><br><span class="line">   [[<span class="number">-1</span>, <span class="number">14</span>], <span class="number">1</span>, <span class="string">Concat</span>, [<span class="number">1</span>]],  <span class="comment"># cat head P4</span></span><br><span class="line">   [<span class="number">-1</span>, <span class="number">3</span>, <span class="string">BottleneckCSP</span>, [<span class="number">512</span>, <span class="literal">False</span>]],  <span class="comment"># 20</span></span><br><span class="line"></span><br><span class="line">   [<span class="number">-1</span>, <span class="number">1</span>, <span class="string">Conv</span>, [<span class="number">512</span>, <span class="number">3</span>, <span class="number">2</span>]],</span><br><span class="line">   [[<span class="number">-1</span>, <span class="number">10</span>], <span class="number">1</span>, <span class="string">Concat</span>, [<span class="number">1</span>]],  <span class="comment"># cat head P5</span></span><br><span class="line">   [<span class="number">-1</span>, <span class="number">3</span>, <span class="string">BottleneckCSP</span>, [<span class="number">1024</span>, <span class="literal">False</span>]],  <span class="comment"># 23</span></span><br><span class="line"></span><br><span class="line">   [[<span class="number">17</span>, <span class="number">20</span>, <span class="number">23</span>], <span class="number">1</span>, <span class="string">Detect</span>, [<span class="string">nc</span>, <span class="string">anchors</span>]],  <span class="comment"># Detect(P3, P4, P5)</span></span><br><span class="line">  ]</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<h3 id="1-6-开始训练"><a href="#1-6-开始训练" class="headerlink" title="1.6 开始训练"></a>1.6 开始训练</h3><p>这里选择了 <code>yolov5s</code> 模型进行训练，权重也是基于 <code>yolov5s.pt</code> 来训练</p>
+<figure class="highlight shell"><figcaption><span>script</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">python train.py --img 640 --batch 16 --epochs 10 --data ./data/custom_data.yaml --cfg ./models/custom_yolov5.yaml --weights ./weights/yolov5s.pt</span><br></pre></td></tr></table></figure>
+
+<p>其中，<code>yolov5s.pt</code> 需要自行下载放在本工程的根目录即可，下载地址 <a target="_blank" rel="noopener" href="https://drive.google.com/open?id=1Drs_Aiu7xx6S-ix95f9kNsA6ueKRpN2J">官方权重</a></p>
+<h3 id="1-7-看训练之后的结果"><a href="#1-7-看训练之后的结果" class="headerlink" title="1.7 看训练之后的结果"></a>1.7 看训练之后的结果</h3><p>训练之后，权重会保存在 <code>./runs</code> 文件夹里面的每个 <code>exp</code> 文件里面的 <code>weights/best.py</code> ，里面还可以看到训练的效果<br><img src="/./yolo/test_batch0_gt.jpg"></p>
+<h1 id="2-侦测"><a href="#2-侦测" class="headerlink" title="2. 侦测"></a>2. 侦测</h1><p>侦测图片会保存在 <code>./inferenct/output/</code> 文件夹下</p>
+<p>运行命令：</p>
+<figure class="highlight shell"><figcaption><span>script</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">python detect.py --source   0  # webcam</span><br><span class="line">                            file.jpg  # image </span><br><span class="line">                            file.mp4  # video</span><br><span class="line">                            path/  # directory</span><br><span class="line">                            path/*.jpg  # glob</span><br><span class="line">                            rtsp://170.93.143.139/rtplive/470011e600ef003a004ee33696235daa  # rtsp stream</span><br><span class="line">                            http://112.50.243.8/PLTV/88888888/224/3221225900/1.m3u8  # http stream</span><br></pre></td></tr></table></figure>
+
+<p>例如使用我的 <code>s</code> 权重检测图片，可以运行以下命令，侦测图片会保存在 <code>./inferenct/output/</code> 文件夹下</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">python detect.py --<span class="built_in">source</span> 图片路径 --weights ./weights/helmet_head_person_s.pt</span><br></pre></td></tr></table></figure>
+
+<h1 id="3-检测危险区域内是否有人"><a href="#3-检测危险区域内是否有人" class="headerlink" title="3. 检测危险区域内是否有人"></a>3. 检测危险区域内是否有人</h1><h2 id="3-1-危险区域标注方式"><a href="#3-1-危险区域标注方式" class="headerlink" title="3.1 危险区域标注方式"></a>3.1 危险区域标注方式</h2><p>我这里使用的是 <a target="_blank" rel="noopener" href="http://www.jinglingbiaozhu.com/">精灵标注助手</a> 标注，生成了对应图片的 json 文件</p>
+<h2 id="3-2-执行侦测"><a href="#3-2-执行侦测" class="headerlink" title="3.2 执行侦测"></a>3.2 执行侦测</h2><p>侦测图片会保存在 <code>./inferenct/output/</code> 文件夹下</p>
+<p>运行命令：</p>
+<figure class="highlight shell"><figcaption><span>script</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">python area_detect.py --source ./area_dangerous --weights ./weights/helmet_head_person_s.pt</span><br></pre></td></tr></table></figure>
+
+<h2 id="3-3-效果：危险区域会使用-红色框-标出来，同时，危险区域里面的人体也会被框出来，危险区域外的人体不会被框选出来"><a href="#3-3-效果：危险区域会使用-红色框-标出来，同时，危险区域里面的人体也会被框出来，危险区域外的人体不会被框选出来" class="headerlink" title="3.3 效果：危险区域会使用 红色框 标出来，同时，危险区域里面的人体也会被框出来，危险区域外的人体不会被框选出来"></a>3.3 效果：危险区域会使用 <em>红色框</em> 标出来，同时，危险区域里面的人体也会被框出来，危险区域外的人体不会被框选出来</h2><p><img src="/./yolo/area_output_1.jpg"><br><img src="/./yolo/area_output_2.jpg"></p>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">Author: </span><span class="post-copyright-info"><a href="https://zc0812.github.io">张超</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">Link: </span><span class="post-copyright-info"><a href="https://zc0812.github.io/2023/07/13/yolo/">https://zc0812.github.io/2023/07/13/yolo/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">Copyright Notice: </span><span class="post-copyright-info">All articles in this blog are licensed under <a target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0</a> unless stating additionally.</span></div></div><div class="tag_share"><div class="post-meta__tag-list"></div><div class="post_share"><div class="social-share" data-image="/img/avatar.png" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><div class="next-post pull-full"><a href="/2023/07/12/hello-world/" title="Hello World"><div class="cover" style="background: var(--default-bg-color)"></div><div class="pagination-info"><div class="label">Next Post</div><div class="next_info">Hello World</div></div></a></div></nav></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src="/img/avatar.png" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">张超</div><div class="author-info__description"></div></div><div class="card-info-data site-data is-center"><a href="/archives/"><div class="headline">Articles</div><div class="length-num">2</div></a><a href="/tags/"><div class="headline">Tags</div><div class="length-num">0</div></a><a href="/categories/"><div class="headline">Categories</div><div class="length-num">1</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/Zc0812"><i class="fab fa-github"></i><span>Follow Me</span></a><div class="card-info-social-icons is-center"><a class="social-icon" href="https://github.com/Zc0812" target="_blank" title="Github"><i class="fab fa-github" style="color: #24292e;"></i></a><a class="social-icon" href="mailto:2010437134@qq.com" target="_blank" title="Email"><i class="fas fa-envelope" style="color: #4a7dbe;"></i></a></div></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>Announcement</span></div><div class="announcement_content">驽马十驾，功在不舍</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>Catalog</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%AE%89%E5%85%A8%E5%B8%BD%E6%A3%80%E6%B5%8B"><span class="toc-number">1.</span> <span class="toc-text">安全帽检测</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%8C%87%E6%A0%87"><span class="toc-number">1.1.</span> <span class="toc-text">指标</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#yolov5s-%E4%B8%BA%E5%9F%BA%E7%A1%80%E8%AE%AD%E7%BB%83%EF%BC%8Cepoch-50"><span class="toc-number">1.1.1.</span> <span class="toc-text">yolov5s 为基础训练，epoch &#x3D; 50</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#yolov5m-%E4%B8%BA%E5%9F%BA%E7%A1%80%E8%AE%AD%E7%BB%83%EF%BC%8Cepoch-100"><span class="toc-number">1.1.2.</span> <span class="toc-text">yolov5m 为基础训练，epoch &#x3D; 100</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#yolov5l-%E4%B8%BA%E5%9F%BA%E7%A1%80%E8%AE%AD%E7%BB%83%EF%BC%8Cepoch-100"><span class="toc-number">1.1.3.</span> <span class="toc-text">yolov5l 为基础训练，epoch &#x3D; 100</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#1-YOLO-v5%E8%AE%AD%E7%BB%83%E8%87%AA%E5%B7%B1%E6%95%B0%E6%8D%AE%E9%9B%86%E6%95%99%E7%A8%8B"><span class="toc-number">2.</span> <span class="toc-text">1.YOLO v5训练自己数据集教程</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%8E%AF%E5%A2%83%E5%87%86%E5%A4%87"><span class="toc-number">2.1.</span> <span class="toc-text">环境准备</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AE%98%E6%96%B9%E6%9D%83%E9%87%8D"><span class="toc-number">2.2.</span> <span class="toc-text">官方权重</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%AE%AD%E7%BB%83%E8%87%AA%E5%B7%B1%E7%9A%84%E6%95%B0%E6%8D%AE"><span class="toc-number">2.3.</span> <span class="toc-text">训练自己的数据</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%8F%90%E7%A4%BA%EF%BC%9A"><span class="toc-number">2.3.0.1.</span> <span class="toc-text">提示：</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-1-%E5%88%9B%E5%BB%BA%E8%87%AA%E5%B7%B1%E7%9A%84%E6%95%B0%E6%8D%AE%E9%9B%86%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6"><span class="toc-number">2.3.1.</span> <span class="toc-text">1.1 创建自己的数据集配置文件</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-2-%E5%88%9B%E5%BB%BA%E6%AF%8F%E4%B8%AA%E5%9B%BE%E7%89%87%E5%AF%B9%E5%BA%94%E7%9A%84%E6%A0%87%E7%AD%BE%E6%96%87%E4%BB%B6"><span class="toc-number">2.3.2.</span> <span class="toc-text">1.2 创建每个图片对应的标签文件</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-3-%E6%96%87%E4%BB%B6%E6%94%BE%E7%BD%AE%E8%A7%84%E8%8C%83"><span class="toc-number">2.3.3.</span> <span class="toc-text">1.3 文件放置规范</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-4-%E8%81%9A%E7%B1%BB%E5%BE%97%E5%87%BA%E5%85%88%E9%AA%8C%E6%A1%86%EF%BC%88Yolov5-%E5%86%85%E9%83%A8%E5%B7%B2%E5%81%9A%E9%80%82%E9%85%8D%EF%BC%8C%E5%8F%AF%E9%80%89%EF%BC%89"><span class="toc-number">2.3.4.</span> <span class="toc-text">1.4 聚类得出先验框（Yolov5 内部已做适配，可选）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-5-%E9%80%89%E6%8B%A9%E4%B8%80%E4%B8%AA%E6%82%A8%E9%9C%80%E8%A6%81%E7%9A%84%E6%A8%A1%E5%9E%8B"><span class="toc-number">2.3.5.</span> <span class="toc-text">1.5 选择一个您需要的模型</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-6-%E5%BC%80%E5%A7%8B%E8%AE%AD%E7%BB%83"><span class="toc-number">2.3.6.</span> <span class="toc-text">1.6 开始训练</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-7-%E7%9C%8B%E8%AE%AD%E7%BB%83%E4%B9%8B%E5%90%8E%E7%9A%84%E7%BB%93%E6%9E%9C"><span class="toc-number">2.3.7.</span> <span class="toc-text">1.7 看训练之后的结果</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#2-%E4%BE%A6%E6%B5%8B"><span class="toc-number">3.</span> <span class="toc-text">2. 侦测</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#3-%E6%A3%80%E6%B5%8B%E5%8D%B1%E9%99%A9%E5%8C%BA%E5%9F%9F%E5%86%85%E6%98%AF%E5%90%A6%E6%9C%89%E4%BA%BA"><span class="toc-number">4.</span> <span class="toc-text">3. 检测危险区域内是否有人</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#3-1-%E5%8D%B1%E9%99%A9%E5%8C%BA%E5%9F%9F%E6%A0%87%E6%B3%A8%E6%96%B9%E5%BC%8F"><span class="toc-number">4.1.</span> <span class="toc-text">3.1 危险区域标注方式</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-2-%E6%89%A7%E8%A1%8C%E4%BE%A6%E6%B5%8B"><span class="toc-number">4.2.</span> <span class="toc-text">3.2 执行侦测</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-3-%E6%95%88%E6%9E%9C%EF%BC%9A%E5%8D%B1%E9%99%A9%E5%8C%BA%E5%9F%9F%E4%BC%9A%E4%BD%BF%E7%94%A8-%E7%BA%A2%E8%89%B2%E6%A1%86-%E6%A0%87%E5%87%BA%E6%9D%A5%EF%BC%8C%E5%90%8C%E6%97%B6%EF%BC%8C%E5%8D%B1%E9%99%A9%E5%8C%BA%E5%9F%9F%E9%87%8C%E9%9D%A2%E7%9A%84%E4%BA%BA%E4%BD%93%E4%B9%9F%E4%BC%9A%E8%A2%AB%E6%A1%86%E5%87%BA%E6%9D%A5%EF%BC%8C%E5%8D%B1%E9%99%A9%E5%8C%BA%E5%9F%9F%E5%A4%96%E7%9A%84%E4%BA%BA%E4%BD%93%E4%B8%8D%E4%BC%9A%E8%A2%AB%E6%A1%86%E9%80%89%E5%87%BA%E6%9D%A5"><span class="toc-number">4.3.</span> <span class="toc-text">3.3 效果：危险区域会使用 红色框 标出来，同时，危险区域里面的人体也会被框出来，危险区域外的人体不会被框选出来</span></a></li></ol></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>Recent Post</span></div><div class="aside-list"><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2023/07/13/yolo/" title="yolo">yolo</a><time datetime="2023-07-13T02:47:24.000Z" title="Created 2023-07-13 10:47:24">2023-07-13</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2023/07/12/hello-world/" title="Hello World">Hello World</a><time datetime="2023-07-12T14:10:36.913Z" title="Created 2023-07-12 22:10:36">2023-07-12</time></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2023 <i style="color:#FF6A6A;animation: announ_animation 0.8s linear infinite;" class="fa fa-heartbeat"></i> 张超</div><div class="framework-info"><span>Framework </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>Theme </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="Read Mode"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="Toggle Between Light And Dark Mode"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="Toggle between single-column and double-column"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="Setting"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="Table Of Contents"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="Back To Top"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox/fancybox.umd.min.js"></script><div class="js-pjax"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/GitHub用户名/GitHub用户名.github.io/css/Lete.css"><script src="https://cdn.jsdelivr.net/gh/GitHub用户名/GitHub用户名.github.io/js/Lete.js"></script><script src="https://cdn.jsdelivr.net/gh/lete114/CDN/Sum/sakura.js"></script>#樱花<script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">Search</span><span id="loading-status"></span><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="is-center" id="loading-database"><i class="fas fa-spinner fa-pulse"></i><span>  Loading the Database</span></div><div class="search-wrap"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="Search for Posts" type="text"/></div></div><hr/><div class="no-result" id="local-search-results"></div><div id="local-search-stats-wrap"></div></div></div><div id="search-mask"></div><script src="/js/search/local-search.js"></script></div></div></body></html>
