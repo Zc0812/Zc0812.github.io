@@ -4,6 +4,25 @@
   
     
     <entry>
+      <title>华师大暑期夏令营实践项目 - 基于 GitHub 的博客网站</title>
+      <link href="/2023/07/13/encu_summercamp/"/>
+      <url>/2023/07/13/encu_summercamp/</url>
+      
+        <content type="html"><![CDATA[<h1 id="华师大暑期夏令营实践项目-基于-GitHub-的博客网站"><a href="#华师大暑期夏令营实践项目-基于-GitHub-的博客网站" class="headerlink" title="华师大暑期夏令营实践项目 - 基于 GitHub 的博客网站"></a>华师大暑期夏令营实践项目 - 基于 GitHub 的博客网站</h1><p>本次项目使用 Hexo 静态网站生成器和 Butterfly 主题来搭建网站。</p><p>项目的目标是创建一个个人博客网站，以展示和分享作者的文章和内容。通过 Hexo 和 Butterfly 主题的组合，能够快速构建一个具有专业外观和优秀用户体验的博客网站。</p><h2 id="页面展示："><a href="#页面展示：" class="headerlink" title="页面展示："></a>页面展示：</h2><p><img src="/./summer_camp/home_page1.png"><br><img src="/./summer_camp/navigate_page1.png"><br><img src="/./summer_camp/article_page.png"><br><img src="/./summer_camp/sidebar.png"><br><img src="/./summer_camp/file_profile.png"><br><img src="/./summer_camp/article.png"><br><img src="/./summer_camp/person_profile.png"><br><img src="/./summer_camp/search.png"></p><hr><h1 id="博客主题及其选取原因"><a href="#博客主题及其选取原因" class="headerlink" title="博客主题及其选取原因"></a>博客主题及其选取原因</h1><p>Hexo 是一个基于 Node.js 的静态博客框架，它简单易用且高度可定制。而 Butterfly 主题是一个美观、响应式的 Hexo 主题，<br>最重要的是Butterfly 提供了丰富的自定义选项，包括颜色、字体、布局等，只需要在<code>themes/butterflu/_config.yml</code>中修改对应字段即可，作者还提供了一个帮助文档，使用户能够根据个人喜好定制博客外观。<br><img src="/./summer_camp/teach_doc.png"></p><h1 id="博客页面布局及其设计思路"><a href="#博客页面布局及其设计思路" class="headerlink" title="博客页面布局及其设计思路"></a>博客页面布局及其设计思路</h1><h2 id="博客页面主要分为："><a href="#博客页面主要分为：" class="headerlink" title="博客页面主要分为："></a>博客页面主要分为：</h2><h3 id="主界面–设计简洁、现代化的主界面，快速浏览最新的文章和重要的页面"><a href="#主界面–设计简洁、现代化的主界面，快速浏览最新的文章和重要的页面" class="headerlink" title="主界面–设计简洁、现代化的主界面，快速浏览最新的文章和重要的页面"></a>主界面–设计简洁、现代化的主界面，快速浏览最新的文章和重要的页面</h3><p><img src="/./summer_camp/home_page1.png"></p><h3 id="导航栏–在顶部或侧边显示导航栏，方便用户浏览不同的页面和文章分类"><a href="#导航栏–在顶部或侧边显示导航栏，方便用户浏览不同的页面和文章分类" class="headerlink" title="导航栏–在顶部或侧边显示导航栏，方便用户浏览不同的页面和文章分类"></a>导航栏–在顶部或侧边显示导航栏，方便用户浏览不同的页面和文章分类</h3><p><img src="/./summer_camp/navigate_page1.png"></p><h3 id="侧边栏–包括个人简介、标签云、分类目录等侧边栏元素"><a href="#侧边栏–包括个人简介、标签云、分类目录等侧边栏元素" class="headerlink" title="侧边栏–包括个人简介、标签云、分类目录等侧边栏元素"></a>侧边栏–包括个人简介、标签云、分类目录等侧边栏元素</h3><p><img src="/./summer_camp/sidebar.png"></p><h3 id="文章页–清晰的文章页面布局，包括文章标题、作者、发布日期、正文内容等"><a href="#文章页–清晰的文章页面布局，包括文章标题、作者、发布日期、正文内容等" class="headerlink" title="文章页–清晰的文章页面布局，包括文章标题、作者、发布日期、正文内容等"></a>文章页–清晰的文章页面布局，包括文章标题、作者、发布日期、正文内容等</h3><p><img src="/./summer_camp/article_page.png"><br><img src="/./summer_camp/article.png"></p><h3 id="个人简介–展示个人信息"><a href="#个人简介–展示个人信息" class="headerlink" title="个人简介–展示个人信息"></a>个人简介–展示个人信息</h3><p><img src="/./summer_camp/person_profile.png"></p><h1 id="博客功能实现及其技术选择"><a href="#博客功能实现及其技术选择" class="headerlink" title="博客功能实现及其技术选择"></a>博客功能实现及其技术选择</h1><h2 id="搜索功能"><a href="#搜索功能" class="headerlink" title="搜索功能"></a>搜索功能</h2><p><img src="/./summer_camp/search.png"></p><p>安裝 ‘hexo-generator-searchdb’ 或者 ‘hexo-generator-search’，根据文档做相应匹配<br>修改’butterflu&#x2F;_config.yml’主題配置文件</p><figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Local search</span></span><br><span class="line"><span class="attr">local_search:</span></span><br><span class="line">  <span class="attr">enable:</span> <span class="literal">false</span></span><br><span class="line">  <span class="comment"># Preload the search data when the page loads.</span></span><br><span class="line">  <span class="attr">preload:</span> <span class="literal">false</span></span><br><span class="line">  <span class="comment"># Show top n results per article, show all results by setting to -1</span></span><br><span class="line">  <span class="attr">top_n_per_article:</span> <span class="number">1</span></span><br><span class="line">  <span class="comment"># Unescape html strings to the readable one.</span></span><br><span class="line">  <span class="attr">unescape:</span> <span class="literal">false</span></span><br><span class="line">  <span class="attr">CDN:</span></span><br></pre></td></tr></table></figure><h2 id="访问人数"><a href="#访问人数" class="headerlink" title="访问人数"></a>访问人数</h2><p><img src="/./summer_camp/visit.png"></p><p>修改’butterflu&#x2F;_config.yml’配置文件</p><h1 id="博客样式设计及其美学考量"><a href="#博客样式设计及其美学考量" class="headerlink" title="博客样式设计及其美学考量"></a>博客样式设计及其美学考量</h1><h1 id="博客制作过程中遇到的问题及其解决方法"><a href="#博客制作过程中遇到的问题及其解决方法" class="headerlink" title="博客制作过程中遇到的问题及其解决方法"></a>博客制作过程中遇到的问题及其解决方法</h1><h1 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h1>]]></content>
+      
+      
+      <categories>
+          
+          <category> 项目总结 </category>
+          
+      </categories>
+      
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>yolo</title>
       <link href="/2023/07/13/yolo/"/>
       <url>/2023/07/13/yolo/</url>
@@ -18,6 +37,12 @@
       </categories>
       
       
+        <tags>
+            
+            <tag> yolo </tag>
+            
+        </tags>
+      
     </entry>
     
     
@@ -30,6 +55,18 @@
         <content type="html"><![CDATA[<p>Welcome to <a href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p><h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">&quot;My New Post&quot;</span></span><br></pre></td></tr></table></figure><p>More info: <a href="https://hexo.io/docs/writing.html">Writing</a></p><h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure><p>More info: <a href="https://hexo.io/docs/server.html">Server</a></p><h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure><p>More info: <a href="https://hexo.io/docs/generating.html">Generating</a></p><h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure><p>More info: <a href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p>]]></content>
       
       
+      <categories>
+          
+          <category> 编程入门 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> helloword </tag>
+            
+        </tags>
       
     </entry>
     
